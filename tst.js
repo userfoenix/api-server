@@ -5,7 +5,7 @@ var oMsg = {
 	corr: 'string', // guid or guid@group
 	text: 'string',
 	attach: 'object', // atatch object
-	atime: 'string', // 64 bitstring
+	atime: 'string', // 64 bit string
 	flags: 'number' // bitmask
 };
 
