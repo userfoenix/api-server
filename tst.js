@@ -10,29 +10,29 @@ var oMsg = {
 };
 
 var cmd = [
-	{cmd:'msg.send',    payload: {corr:'string', text:'string'}},
-	{cmd:'msg.read',    payload: {corr:'string', atime:'64 bitstring'}},
-	{cmd:'msg.roster',  payload: {modtime:'[number]'}},
-	{cmd:'msg.history', payload: {corr:'string', modtime:'[number]'}},
-	{cmd:'msg.typing',  payload: {corr:'string'}}
+	{cmd:'send',    payload: {corr:'string', text:'string'}},
+	{cmd:'read',    payload: {corr:'string', atime:'64 bitstring'}},
+	{cmd:'roster',  payload: {modtime:'[number]'}},
+	{cmd:'history', payload: {corr:'string', modtime:'[number]'}},
+	{cmd:'typing',  payload: {corr:'string'}}
 ];
 
 var notification = [
 	{
-		cmd:'msg.roster', data: [{
+		cmd: 'roster', data: [{
 			id: 'string', // guid or group_id
 			type: 'number', // user,group
 			modtime: 'number' // last modification time for sort
 		}]
 	},
 	{
-		cmd:'msg.inbox', data: [oMsg]
+		cmd: 'inbox', data: [oMsg]
 	},
 	{
-		cmd:'msg.history', data: [oMsg]
+		cmd:'history', data: [oMsg]
 	},
 	{
-		cmd:'msg.contact', data: [
+		cmd:'contact', data: [
 		{
 			guid: 'number', // user guid
 			name: 'string', // full name
@@ -62,7 +62,10 @@ var notification = [
 				status: 'status' // 0-pending, 1-approved, 2-deleted
 			}]
 		}
-	]}
+	]},
+	{cmd:'group.update', data: {id:'number'}},
+	{cmd:'group.member', data: {act:'add|del',guid:'number'}},
+	{cmd:'typing',  payload: {corr:'string',guid:'number'}}
 ];
 
 // Нужно ли нам передавать отдельно группы и контакты
